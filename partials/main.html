@@ -1,0 +1,56 @@
+<br>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#add">Add new Product</button>
+        <br><br><br>
+        <input type="text" class="form-control" placeholder="Search..." ng-model="filter.searchString" ng-change="change()">
+        <br><br><br>
+        
+        <h3 class='text-danger'>Total Sales : {{fetch.tatal | currency:'&#8369;':0}} </h3>
+        <br><br><br>
+            <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">QTY</th>
+                        <th scope="col">Item</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Options</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="(k,v) in fetch track by $index" ng-if="fetch.status1">
+                        <th scope="row">{{v.qty}} </th>
+                        <td>{{v.item}}</td>
+                      <td>{{v.price | currency:'&#8369;':0}}</td>
+                        <td>{{v.qty * v.price | currency:'&#8369;':0}} </td>
+                        <td>{{v.date}}</td>
+                        <td><button class="btn btn-danger" ng-click="del()">Remove</button></td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add product</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="number" class="form-control bg-dark text-light" placeholder="Quantity" ng-model="product.qty"><br>
+          <input type="Text" class="form-control bg-dark text-light" placeholder="Item" ng-model="product.item"><br>
+          <input type="number" class="form-control bg-dark text-light" placeholder="Price" ng-model="product.price"><br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" ng-click="add()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
